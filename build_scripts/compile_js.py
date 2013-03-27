@@ -4,9 +4,14 @@ import glob, os, sys, shutil
 
 import config
 
-indexhtml = open(config.root + config.index).read()
+indexhtml = ""
+newHTML = ""
 compiledScripts = []
 scriptIndex = 0 # keep track of where we pulled the scripts from
+
+tmpdir = "temp_js"
+compiled = "%s/*.js" % tmpdir
+
 
 # scrape script tag groups for file names and compile them
 def getScriptGroups():
@@ -14,17 +19,18 @@ def getScriptGroups():
         getScriptGroup()
         
     global indexhtml
+    global newHTML
     newScripts = ""
     for s in compiledScripts:
-        tag = "<script type='text/javascript' src='" + s.split(config.root)[1] + "'></script>\n"
+        tag = "\t<script type='text/javascript' src='" + s.split(config.root)[1] + "'></script>\n"
         newScripts += tag
     # output new html with tag groups replaced by compiled scripts
-    indexhtml = indexhtml[:scriptIndex] + newScripts + indexhtml[scriptIndex:]
-    os.system("touch " + config.root + "production.html")
-    f = open(config.root + "production.html", "w")
-    f.write(indexhtml)
-    f.close()
-    print "created " + config.root + "production.html"
+    newHTML = indexhtml[:scriptIndex] + newScripts + indexhtml[scriptIndex:]
+#    os.system("touch " + config.root + config.output)
+#    f = open(config.root + config.output, "w")
+#    f.write(indexhtml)
+#    f.close()
+#    print "created " + config.root + config.output
     
 def getScriptGroup():
     global indexhtml
@@ -56,14 +62,6 @@ def getScriptGroup():
     compiledScripts.append(output)
     buildFiles(sourcePaths, output)
     
-
-
-
-
-
-
-tmpdir = "temp_js"
-compiled = "%s/*.js" % tmpdir
 
 def clean():
     print "Cleaning the tmp directory"
@@ -101,7 +99,10 @@ def buildFiles(mfiles, mOutput):
     clean()
 
 
-def compile():
+def run(html):
+    global indexhtml
+    indexhtml = html
     getScriptGroups()
+    return newHTML
 
 

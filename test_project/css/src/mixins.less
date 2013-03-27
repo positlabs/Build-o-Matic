@@ -1,0 +1,124 @@
+
+/**
+*  @args - any number of transition property declarations
+*/
+.transition(...) {
+  @props: ~'@{arguments}';
+  -webkit-transition: @props;
+  -moz-transition: @props;
+  -o-transition: @props;
+  transition: @props;
+}
+
+/**
+*  @args - any number of transform property declarations
+*/
+.transform(...) {
+  @props: ~'@{arguments}';
+  -webkit-transform: @props;
+  -moz-transform: @props;
+  -o-transform: @props;
+  transform: @props;
+}
+
+.transform-origin (@x, @y) {
+  -webkit-transform-origin: @x @y;
+  -moz-transform-origin:    @x @y;
+  -ms-transform-origin:     @x @y;
+  -o-transform-origin:      @x @y;
+}
+
+.drop-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+  -webkit-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+  -moz-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+  box-shadow:		@x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.inner-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+  -webkit-box-shadow:@x @y @blur @spread rgba(0, 0, 0, @alpha) inset;
+  -moz-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha) inset;
+  box-shadow:		@x @y @blur @spread rgba(0, 0, 0, @alpha) inset;
+}
+
+/**
+*  @param val - none, text, all
+*/
+.user-select(@val) {
+  user-select: @val;
+  -ms-user-select: @val;
+  -webkit-user-select: @val;
+  -khtml-user-select: @val;
+  -moz-user-select: @val;
+  -webkit-touch-callout: @val;
+  -webkit-user-drag: @val;
+}
+
+.bg-cover(@url) {
+  background: url(@url) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+// Animation
+
+/*
+
+@-webkit-keyframes menu-item-fadein {
+     from { top: -20px; }
+     to { top: 0px; }
+}
+
+*/
+
+.animation (@params) {
+    -webkit-animation: @params;
+    -moz-animation: @params;
+}
+
+// forwards or backwards
+.animation-fill-mode (@params) {
+    -webkit-animation-fill-mode: @params;
+    -moz-animation-fill-mode: @params;
+}
+
+// have to be careful with this because it will override any other transforms
+.gpu(){
+  .transform(translateZ(0));
+}
+
+.univers1(){}
+.univers2(){}
+.univers3(){}
+.univers4(){}
+//
+// global vars
+//
+@blue-up: #008fc1;
+@blue-over: #00adea;
+
+@green-up: #029f00;
+@green-over: #40d312;
+
+@red-over: #ff0319;
+@red-up: #50151b;
+
+@dark-gray: #4d4d4d;
+@light-gray: #8b8b8b;
+
+@ultra-light-gray: white;
+//@ultra-light-gray: #cccccc;
+
+@font: 'Oswald', sans-serif;
+
+@comma: ~",";
+
+//
+// desktop vars
+//
+@edgePad: 30px;
+@footerHeight: 37px;
+@leftMargin: 70px;
+
+@toPlaying:500ms;
