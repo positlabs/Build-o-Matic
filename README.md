@@ -17,14 +17,22 @@ Instructions
 1. open config.py and replace the default values with your own
 2. surround script tag groups with build tags
 ```
-<!-- build someFile.js -->\n
-...\n
+<!-- build someFile.js -->
+```
+```
+[script tags]
+```
+```
 <!-- /build -->
 ```
 3. same for less, but with a different label
 ```
-<!-- less desktop.css -->\n
-...\n
+<!-- less desktop.css -->
+```
+```
+[link tags]
+```
+```
 <!-- /less -->
 ```
 4. in Terminal, navigate to the build-o-matic.py dir, and run it
