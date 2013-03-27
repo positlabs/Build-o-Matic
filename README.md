@@ -49,13 +49,16 @@ Dependencies
 =============
 
 ImageOptim: http://imageoptim.com/
-- Must be installed in Applications/ (else you can change where the optimg.py script looks)
+-----------
+Must be installed in Applications/ (else you can change where the optimg.py script looks)
 
 LESS: http://lesscss.org/
-- npm install -g less
+-----------
+npm install -g less
 
 CleanCSS: http://davidwalsh.name/clean-css
-- npm install clean-css
+-----------
+npm install clean-css
 
 
 
