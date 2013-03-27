@@ -29,7 +29,7 @@ Instructions
 	<!-- /build -->
 	```
 
-3. same for less, but with a different label
+3. same for less, but with a different label (will probably update this to allow for less and / or css)
 
 	```
 	<!-- less desktop.css -->
