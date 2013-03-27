@@ -16,31 +16,32 @@ Instructions
 0. install dependencies (see below)
 1. open config.py and replace the default values with your own
 2. surround script tag groups with build tags
-```
-<!-- build someFile.js -->
-```
 
-```
-[script tags]
-```
+	```
+	<!-- build someFile.js -->
+	```
 
-```
-<!-- /build -->
-```
+	```
+	[script tags]
+	```
+
+	```
+	<!-- /build -->
+	```
 
 3. same for less, but with a different label
 
-```
-<!-- less desktop.css -->
-```
+	```
+	<!-- less desktop.css -->
+	```
 
-```
-[link tags]
-```
+	```
+	[link tags]
+	```
 
-```
-<!-- /less -->
-```
+	```
+	<!-- /less -->
+	```
 
 4. in Terminal, navigate to the build-o-matic.py dir, and run it
 
