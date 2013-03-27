@@ -3,9 +3,9 @@ Build-o-Matic
 
 Python build script for HTML 5 sites.
 
-- Compiles JS from script tags in index.html
-- Compiles LESS into CSS
-- Optimizes jpgs, pngs, gifs
+- Compiles JS from script tags
+- Compiles LESS into CSS from link tags
+- Lossless image optimization of jpgs, pngs, gifs
 
 Note: Currently, the image optimizer will overwrite the original images. To see image compression in action, replace
 imgs/ contents with contents of unoptimized_images/
@@ -29,28 +29,29 @@ Instructions
 	<!-- /build -->
 	```
 
-3. same for less, but with a different label (will probably update this to allow for less and / or css)
+3. same for css/less, but with a different label
 
 	```
-	<!-- less desktop.css -->
-	```
-
-	```
-	[link tags]
+	<!-- styles desktop.css -->
 	```
 
 	```
-	<!-- /less -->
+	[css or less link tags]
 	```
 
-4. in Terminal, navigate to the build-o-matic.py dir, and run it
+	```
+	<!-- /styles -->
+	```
+
+4. on the command line, navigate to the build-o-matic.py dir, and run it
 
 Dependencies
 =============
 
 ImageOptim: http://imageoptim.com/
 -----------
-Must be installed in Applications/ (else you can change where the optimg.py script looks)
+Must be installed in Applications/ (else you can change where the optimg.py script looks). This will only work on mac.
+Going to try http://trimage.org/ instead
 
 LESS: http://lesscss.org/
 -----------
