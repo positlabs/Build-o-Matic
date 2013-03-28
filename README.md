@@ -1,7 +1,7 @@
 Build-o-Matic
 =============
 
-Python build script for HTML 5 sites.
+Python build script for HTML 5 sites. Automates boring optimization stuff!
 
 - Compiles JS from script tags
 - Compiles LESS into CSS from link tags
@@ -53,6 +53,10 @@ CleanCSS: http://davidwalsh.name/clean-css
 -----------
 npm install clean-css
 
+Uglify-js: https://github.com/mishoo/UglifyJS
+-----------
+npm install uglify-js
+
 ImageOptim: http://imageoptim.com/
 -----------
 Must be installed in Applications/ (else you can change where the optimg.py script looks). This will only work on mac.
@@ -77,4 +81,19 @@ WARNINGS
 - Currently, the image optimizer will overwrite the original images. To see image compression in action, replace
 imgs/ contents with contents of unoptimized_images/
 
-- the tag scraper doesn't look for comments, so it will compile a script if it's between the build markers
+- the tag scraper doesn't look for comments, so it will compile a commented tag if it's between the build markers
+
+
+Future
+===========
+- Cross-platform compatibility
+
+License
+===========
+Copyright (c) 2013 Posit Labs
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

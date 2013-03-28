@@ -10,8 +10,8 @@ devHTML = compile_js.run(devHTML)
 devHTML = compile_styles.run(devHTML)
 
 def writeFile(html):
-    os.system("touch " + config.root + config.output)
-    f = open(config.root + config.output, "w")
+#    os.system("touch " + config.root + config.output)
+    f = open(config.root + config.output, "w+")
     f.write(html)
     f.close()
     print "created " + config.root + config.output

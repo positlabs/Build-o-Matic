@@ -37,8 +37,8 @@ def compile(files, output):
 
 def assemble(output, compiled):
 	print "Copying CSS to target %s" % config.css
-	os.system("touch " + output)
-	a = open(output, 'w')
+#	os.system("touch " + output)
+	a = open(output, 'w+')
 	a.write("/* COMPILED CSS */\n\n")
 	for fi in compiled:
 		f = open(fi, 'r')
