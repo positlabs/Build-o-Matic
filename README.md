@@ -10,7 +10,7 @@ Python build script for HTML 5 sites. Automates boring optimization stuff!
 
 Instructions
 =============
-0. install dependencies (see below)
+0. install dependencies manually, or run install_mac.py if you're on a mac.
 1. open config.py and replace the default values with your own
 2. surround script tag groups with build tags
 
@@ -44,6 +44,8 @@ Instructions
 
 Dependencies
 =============
+
+Python 2.7: http://python.org/download/
 
 LESS: http://lesscss.org/
 -----------
@@ -87,6 +89,7 @@ imgs/ contents with contents of unoptimized_images/
 Future
 ===========
 - Cross-platform compatibility
+
 
 License
 ===========
