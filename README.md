@@ -63,7 +63,7 @@ Must be installed in Applications/ (else you can change where the optimg.py scri
 Trimage: http://trimage.org/
 -----------
 
-Added Trimage support to make image optimization cross-platform, but it has an annoying number of dependencies.
+Alternative to ImageOptim. Added Trimage support to make image optimization cross-platform, but it has an annoying number of dependencies.
 - pyqt4 - http://www.riverbankcomputing.com/software/pyqt/download
 - - qmake - sudo port install qt4-mac
 - - sip - http://www.riverbankcomputing.com/software/sip/download
