@@ -65,8 +65,8 @@ Trimage: http://trimage.org/
 
 Added Trimage support to make image optimization cross-platform, but it has an annoying number of dependencies.
 - pyqt4 - http://www.riverbankcomputing.com/software/pyqt/download
--- qmake - sudo port install qt4-mac
--- sip - http://www.riverbankcomputing.com/software/sip/download
+- - qmake - sudo port install qt4-mac
+- - sip - http://www.riverbankcomputing.com/software/sip/download
 - optipng - http://optipng.sourceforge.net/
 - jpegoptim - http://www.kokkonen.net/tjko/projects.html
 - advancecomp - http://advancemame.sourceforge.net/comp-readme.html
