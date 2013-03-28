@@ -7,7 +7,7 @@ import config
 indexhtml = ""
 newHTML = ""
 compiledScripts = []
-scriptIndex = 0 # keep track of where we pulled the scripts from
+scriptIndex = 0  # keep track of where we pulled the scripts from
 
 tmpdir = "temp_js"
 compiled = "%s/*.js" % tmpdir
@@ -26,12 +26,8 @@ def getScriptGroups():
         newScripts += tag
     # output new html with tag groups replaced by compiled scripts
     newHTML = indexhtml[:scriptIndex] + newScripts + indexhtml[scriptIndex:]
-#    os.system("touch " + config.root + config.output)
-#    f = open(config.root + config.output, "w")
-#    f.write(indexhtml)
-#    f.close()
-#    print "created " + config.root + config.output
-    
+
+
 def getScriptGroup():
     global indexhtml
     print "-------------------"
@@ -79,7 +75,7 @@ def compileFiles(files):
     for file in files:
         fo = os.path.join(tmpdir, os.path.split(file)[1])
         print "    %s -> %s" % (file, fo)
-        os.system("uglifyjs -o %s %s" % (fo, file))
+        os.system("uglifyjs -nc -o %s %s" % (fo, file))
 
 def assemble(output):
     print "Copying js to target %s" % output

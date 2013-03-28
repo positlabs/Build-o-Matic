@@ -3,71 +3,20 @@
 // Original file: _FJ.js
 var FJ=FJ||{};FJ.NOTIF_EVENT="fjEvent",FJ.NOTIF_NAVIGATION="fjNavigation",FJ.MSG_NAVIGATE="fjNavigate",FJ.MSG_NAVIGATE_UNDO="fjNavigateUndo",FJ.MSG_NAVIGATE_REDO="fjNavigateRedo";
 // Original file: Application.js
-/**
- * 1. Mediators dispatch notifications coming from views or services (not part of FJ)
- * 2. Models are accessible to Mediators directly (Mediators are created by the Controller)
- * 3. Controller receives notifications and broadcasts them to services and views
- * 4. Each view or service is free to act or ignore a notification
- * 5. Notification contain a message and some arbitrary variables on which the Mediator can rely as well
- * 6. Notifications however should not carry data (assets). Those are stored in the Model
- */FJ.Application=new function(){var e=this,t=[];this.model={},this.slug="",this.init=function(t){FJ.Router.init(),FJ.Router.start(t),e.broadcast(FJ.Router.navigateBySlug)},this.createMediator=function(e){e=e||"mediator"+t.length;var n=new FJ.Mediator(e,this);return t.push(n),n},this.destroyMediator=function(e){var n=t.indexOf(e);if(n<0)return;t.splice(n,1)},this.registerViews=function(){for(var e=0,t=arguments.length;e<t;e++){arguments[e].register();var n=arguments[e].onRegister;n&&n()}},this.broadcast=function(e){var n=t.length;for(var r=0;r<n;r++)t[r].notify(e)}};
+FJ.Application=new function(){var e=this,t=[];this.model={},this.slug="",this.init=function(t){FJ.Router.init(),FJ.Router.start(t),e.broadcast(FJ.Router.navigateBySlug)},this.createMediator=function(e){e=e||"mediator"+t.length;var n=new FJ.Mediator(e,this);return t.push(n),n},this.destroyMediator=function(e){var n=t.indexOf(e);if(n<0)return;t.splice(n,1)},this.registerViews=function(){for(var e=0,t=arguments.length;e<t;e++){arguments[e].register();var n=arguments[e].onRegister;n&&n()}},this.broadcast=function(e){var n=t.length;for(var r=0;r<n;r++)t[r].notify(e)}};
 // Original file: Capabilities.js
-/*
-
- FJ.Capabilities extends Modernizr.
-
- */FJ.Capabilities=function(){var e={};if(Modernizr==undefined)throw Error("Modernizr is required");e=Modernizr;var t="",n=["o","webkit","moz","ms"],r=Modernizr.prefixed("transform").toLowerCase();for(var i=0;i<n.length;i++)r.split("transform")[0]==n[i]&&(t="-"+n[i]+"-");return e.vendor=t,e}();
+FJ.Capabilities=function(){var e={};if(Modernizr==undefined)throw Error("Modernizr is required");e=Modernizr;var t="",n=["o","webkit","moz","ms"],r=Modernizr.prefixed("transform").toLowerCase();for(var i=0;i<n.length;i++)r.split("transform")[0]==n[i]&&(t="-"+n[i]+"-");return e.vendor=t,e}();
 // Original file: CSSTransitionBehavior.js
-/*
- This behavior (optionally) extends an existing object (reverse inheritance) so it will be able to control a dom element.
-
- To access these methods, use controller.transition.*
-
- @author josh beckwith
-
- @param element - the DOM element to be affected
- @param controller - object used to make calls
- @return - the controller
- */FJ.CSSTransitionBehavior=function(e,t){function s(){var t=[];for(var n in i){var s="";s+=n+" ",s+=i[n].duration+"ms ",s+=i[n].delay+"ms ",s+=i[n].ease,t.push(s)}e.style[r+"transition"]=t.join(",")}t=t||{},t.transition={};var n=t.transition,r=FJ.Capabilities.vendor,i={};return n.set=function(e,t,n,r){i[e]={},i[e].duration=t||300,i[e].delay=n||0,i[e].ease=r||FJ.ANIM.EASE,s()},FJ.define(n,"properties",function(){return i}),t},FJ.ANIM={},FJ.ANIM.cubicBezier=function(e,t,n,r){return"cubic-bezier("+e+", "+t+", "+n+", "+r+")"},FJ.ANIM.EASE_IN_OUT="ease-in-out",FJ.ANIM.EASE_OUT="ease-out",FJ.ANIM.EASE_IN="ease-in",FJ.ANIM.EASE="ease",FJ.ANIM.LINEAR="linear";
+FJ.CSSTransitionBehavior=function(e,t){function s(){var t=[];for(var n in i){var s="";s+=n+" ",s+=i[n].duration+"ms ",s+=i[n].delay+"ms ",s+=i[n].ease,t.push(s)}e.style[r+"transition"]=t.join(",")}t=t||{},t.transition={};var n=t.transition,r=FJ.Capabilities.vendor,i={};return n.set=function(e,t,n,r){i[e]={},i[e].duration=t||300,i[e].delay=n||0,i[e].ease=r||FJ.ANIM.EASE,s()},FJ.define(n,"properties",function(){return i}),t},FJ.ANIM={},FJ.ANIM.cubicBezier=function(e,t,n,r){return"cubic-bezier("+e+", "+t+", "+n+", "+r+")"},FJ.ANIM.EASE_IN_OUT="ease-in-out",FJ.ANIM.EASE_OUT="ease-out",FJ.ANIM.EASE_IN="ease-in",FJ.ANIM.EASE="ease",FJ.ANIM.LINEAR="linear";
 // Original file: CSSxFormBehavior.js
-/*
-
- This behavior (optionally) extends an existing object (reverse inheritance) so it will be able to control a dom element.
-
- To access these methods, use controller.transform.*
-
- @author josh beckwith
-
- @param element - the DOM element to be affected
- @param controller - object used to make calls
- @return - the controller
-
-
- */FJ.CSSxFormBehavior=function(e,t){function u(){e.style[i+"transform"]=s.toString()}t=t||{},t.transform={};var n=t.transform,r=FJ.Capabilities.csstransforms,i=FJ.Capabilities.vendor,s={translateZ:undefined,translateX:undefined,translateY:undefined,skewX:undefined,skewY:undefined,scaleX:undefined,scaleY:undefined,rotate:undefined,toString:function(){var e="";for(var t in this)this[t]!=undefined&&typeof this[t]!="function"&&(e+=t+"("+this[t]+") ");return e}};FJ.Capabilities.csstransforms3d&&(s.translateZ=0);var o=new FJ.Point("50%","50%");return FJ.define(n,"origin",function(){return o},function(t){o.x=t.x,o.y=t.y,e.style[i+"transform-origin"]=o.x+" "+o.y}),r?(n.translate=function(e,t,n){s.translateX=e+"px",s.translateY=t+"px",n&&(s.translateZ=n+"px")},FJ.define(n,"x",function(){return s.translateX=s.translateX||"0",parseFloat(s.translateX.split("px")[0])},function(e){s.translateX=e+"px",u()}),FJ.define(n,"y",function(){return s.translateY=s.translateY||"0",parseFloat(s.translateY.split("px")[0])},function(e){s.translateY=e+"px",u()}),FJ.define(n,"z",function(){return s.translateZ=s.translateZ||"0",parseFloat(s.translateZ.split("px")[0])},function(e){s.translateZ=e+"px",u()})):(n.translate=function(t,n){e.style.marginLeft=t+"px",e.style.marginTop=n+"px"},FJ.define(n,"x",function(){return parseFloat(e.style.marginLeft.split("px")[0])},function(t){e.style.marginLeft=t+"px"}),FJ.define(n,"y",function(){return parseFloat(e.style.marginTop.split("px")[0])},function(t){e.style.marginTop=t+"px"})),FJ.define(n,"rotation",function(){return s.rotate=s.rotate||"0",parseFloat(s.rotate.split("deg")[0])},function(e){s.rotate=e+"deg",u()}),n.scale=function(e,t){s.scaleX=e,s.scaleY=t,u()},FJ.define(n,"scaleX",function(){return s.scaleX=s.scaleX||"1",parseFloat(s.scaleX)},function(e){s.scaleX=e,u()}),FJ.define(n,"scaleY",function(){return s.scaleY=s.scaleY||"1",parseFloat(s.scaleY)},function(e){s.scaleY=e,u()}),n.skew=function(e,t){s.skewX=e+"deg",s.skewY=t+"deg",u()},FJ.define(n,"skewX",function(){return parseFloat(s.skewX.split("deg")[0])},function(e){s.skewX=e+"deg",u()}),FJ.define(n,"skewY",function(){return parseFloat(s.skewY.split("deg")[0])},function(e){s.skewY=e+"deg",u()}),t},FJ.Point=function(e,t,n){this.x=e,this.y=t,this.z=n||0};
+FJ.CSSxFormBehavior=function(e,t){function u(){e.style[i+"transform"]=s.toString()}t=t||{},t.transform={};var n=t.transform,r=FJ.Capabilities.csstransforms,i=FJ.Capabilities.vendor,s={translateZ:undefined,translateX:undefined,translateY:undefined,skewX:undefined,skewY:undefined,scaleX:undefined,scaleY:undefined,rotate:undefined,toString:function(){var e="";for(var t in this)this[t]!=undefined&&typeof this[t]!="function"&&(e+=t+"("+this[t]+") ");return e}};FJ.Capabilities.csstransforms3d&&(s.translateZ=0);var o=new FJ.Point("50%","50%");return FJ.define(n,"origin",function(){return o},function(t){o.x=t.x,o.y=t.y,e.style[i+"transform-origin"]=o.x+" "+o.y}),r?(n.translate=function(e,t,n){s.translateX=e+"px",s.translateY=t+"px",n&&(s.translateZ=n+"px")},FJ.define(n,"x",function(){return s.translateX=s.translateX||"0",parseFloat(s.translateX.split("px")[0])},function(e){s.translateX=e+"px",u()}),FJ.define(n,"y",function(){return s.translateY=s.translateY||"0",parseFloat(s.translateY.split("px")[0])},function(e){s.translateY=e+"px",u()}),FJ.define(n,"z",function(){return s.translateZ=s.translateZ||"0",parseFloat(s.translateZ.split("px")[0])},function(e){s.translateZ=e+"px",u()})):(n.translate=function(t,n){e.style.marginLeft=t+"px",e.style.marginTop=n+"px"},FJ.define(n,"x",function(){return parseFloat(e.style.marginLeft.split("px")[0])},function(t){e.style.marginLeft=t+"px"}),FJ.define(n,"y",function(){return parseFloat(e.style.marginTop.split("px")[0])},function(t){e.style.marginTop=t+"px"})),FJ.define(n,"rotation",function(){return s.rotate=s.rotate||"0",parseFloat(s.rotate.split("deg")[0])},function(e){s.rotate=e+"deg",u()}),n.scale=function(e,t){s.scaleX=e,s.scaleY=t,u()},FJ.define(n,"scaleX",function(){return s.scaleX=s.scaleX||"1",parseFloat(s.scaleX)},function(e){s.scaleX=e,u()}),FJ.define(n,"scaleY",function(){return s.scaleY=s.scaleY||"1",parseFloat(s.scaleY)},function(e){s.scaleY=e,u()}),n.skew=function(e,t){s.skewX=e+"deg",s.skewY=t+"deg",u()},FJ.define(n,"skewX",function(){return parseFloat(s.skewX.split("deg")[0])},function(e){s.skewX=e+"deg",u()}),FJ.define(n,"skewY",function(){return parseFloat(s.skewY.split("deg")[0])},function(e){s.skewY=e+"deg",u()}),t},FJ.Point=function(e,t,n){this.x=e,this.y=t,this.z=n||0};
 // Original file: Define.js
-/*
-
- function for defining getters and setters
- obj.name() uses getter function
- obj.name(value) uses setter function
-
- @param obj - object to apply the getter / setter to
- @param name - name of the property to get / set
- @param getter - function that returns the property
- @param setter - function that sets the property
-
- */FJ.define=function(e,t,n,r){e[t]=function(e){if(e==undefined)return n();r&&r(e)}};
+FJ.define=function(e,t,n,r){e[t]=function(e){if(e==undefined)return n();r&&r(e)}};
 // Original file: ElementWrapper.js
 FJ.ElementWrapper=function(e){var t=this;e&&(t.div=e),FJ.define(this,"id",function(){return t.div.id},function(e){t.div.id=e}),FJ.define(this,"class",function(){return t.div.className},function(e){t.div.className=e}),this.setDisplay=function(e){t.div.style.display=e},this.opacity=function(e){t.div.style.opacity=e},this.registerClick=function(e){t.div.addEventListener("click",e)},this.unRegisterClick=function(e){t.div.addEventListener("click",e)},this.width=function(){return t.div.offsetWidth},this.height=function(){return t.div.offsetHeight},this.mouseEnabled=function(e){t.div.style["pointer-events"]=e?"auto":"none"}};
 // Original file: EventDispatcher.js
-/**
- * The EventDispatcher is typically used as a property of an objec t(i.e. compisition)
- * @param masterFunc this function will be invoked each time a listener is added or removed. Thanks to this the parten object can be notified if it has any listeners.
- */FJ.EventDispatcher=function(e){"use strict";var t=[];this.addEventListener=function(n){if(t.indexOf(n)>-1)return;t.push(n),e&&e(t.length)},this.removeEventListener=function(n){var r=t.indexOf(n);return r<0?null:(e&&e(t.length-1),t.splice(r,1))},this.dispatch=function(e){var n=t.length;for(var r=0;r<n;r++)t[r](e)}};
+FJ.EventDispatcher=function(e){"use strict";var t=[];this.addEventListener=function(n){if(t.indexOf(n)>-1)return;t.push(n),e&&e(t.length)},this.removeEventListener=function(n){var r=t.indexOf(n);return r<0?null:(e&&e(t.length-1),t.splice(r,1))},this.dispatch=function(e){var n=t.length;for(var r=0;r<n;r++)t[r](e)}};
 // Original file: Extensions.js
-// Code from https://developer.mozilla.org/en-US/docs/Mozilla_event_reference/wheel
-// Creates a global "addwheelListener" method
-// example: addWheelListener( elem, function( e ) { console.log( e.deltaY ); e.preventDefault(); } );
 (function(e,t){var n="",r,i,s;e.addEventListener?(r="addEventListener",i="removeEventListener"):(r="attachEvent",i="detachEvent",n="on"),t.onmousewheel!==undefined&&(s="mousewheel");try{WheelEvent("wheel"),s="wheel"}catch(o){}s||(s="DOMMouseScroll"),e.addWheelListener=function(e,t,i){var o=s=="wheel"?t:u(t);return e[r](n+s,o,i||!1),s=="DOMMouseScroll"&&e[r]("MozMousePixelScroll",o,i||!1),o},e.removeWheelListener=function(e,t){e[i](n+s,t),s=="DOMMouseScroll"&&e[i]("MozMousePixelScroll",t)};var u=function(t){return function(n){!n&&(n=e.event);var r={originalEvent:n,target:n.target||n.srcElement,type:"wheel",deltaMode:n.type=="MozMousePixelScroll"?0:1,deltaX:0,deltaY:0,preventDefault:function(){n.preventDefault?n.preventDefault():n.returnValue=!1}};return s=="mousewheel"?(r.deltaY=-n.wheelDelta/10,n.wheelDeltaX&&(r.deltaX=-n.wheelDeltaX/10)):r.deltaY=n.detail,r.deltaX=r.deltaX|0,r.deltaY=r.deltaY|0,t(r)}}})(window,document),function(){var e=0,t=["ms","moz","webkit","o"];for(var n=0;n<t.length&&!window.requestAnimationFrame;++n)window.requestAnimationFrame=window[t[n]+"RequestAnimationFrame"],window.cancelAnimationFrame=window[t[n]+"CancelAnimationFrame"]||window[t[n]+"CancelRequestAnimationFrame"];window.requestAnimationFrame||(window.requestAnimationFrame=function(t,n){var r=(new Date).getTime(),i=Math.max(0,16-(r-e)),s=window.setTimeout(function(){t(r+i)},i);return e=r+i,s}),window.cancelAnimationFrame||(window.cancelAnimationFrame=function(e){clearTimeout(e)})}(),Array.prototype.indexOf||(Array.prototype.indexOf=function(e,t){for(var n=t||0,r=this.length;n<r;n++)if(this[n]===e)return n;return-1}),(!window.console||!console.log)&&function(){var e=function(){},t=["assert","clear","count","debug","dir","dirxml","error","exception","group","groupCollapsed","groupEnd","info","log","markTimeline","profile","profileEnd","markTimeline","table","time","timeEnd","timeStamp","trace","warn"],n=t.length,r=window.console={};while(n--)r[t[n]]=e}();
 // Original file: Loader.js
 var FJ=FJ||{};FJ.Loader=FJ||{},FJ.Loader.loadJSON=function(e,t){var n=new XMLHttpRequest;n.open("GET",e),n.onreadystatechange=function(){n.readyState==4&&t(JSON.parse(n.responseText))},n.send()},window.__loadCount=0,FJ.Loader.loadJSONP=function(e,t){var n=document.createElement("script");t!=undefined&&(e+="&callback=__loaded"+window.__loadCount),n.src=e,document.body.appendChild(n),t!=undefined&&(window["__loaded"+window.__loadCount]=function(e){t(e)},window.__loadCount++)},FJ.Loader.loadPlainText=function(e,t){var n=new XMLHttpRequest;n.open("GET",e),n.onreadystatechange=function(){n.readyState==4&&t(n.responseText)},n.send()},FJ.Loader.loadScript=function(e,t){var n=document.createElement("script");n.onload=t,n.src=e,document.getElementsByTagName("head")[0].appendChild(n)},FJ.Loader.loadLink=function(e,t){var n=document.createElement("link");n.setAttribute("rel","stylesheet"),n.setAttribute("type","text/"+e.split(".")[1]),n.setAttribute("href",e),n.onload=t,document.getElementsByTagName("head")[0].appendChild(n)},FJ.Loader.loadFramework=function(e,t){var n=["behaviors/CSSTransitionBehavior.js","behaviors/CSSxFormBehavior.js","core/Application.js","core/EventDispatcher.js","core/Mediator.js","core/Notification.js","core/Router.js","util/display/DisplayUtil.js","util/viewport/ViewportUtil.js","util/Capabilities.js","util/Extensions.js","util/ImageDataUtil.js","util/Slug.js","util/modernizr.js","util/VirtualScroll.js","util/Define.js","view/Sprite.js","view/Template.js"];FJ.Loader.loadScript(e+"_FJ.js",function(){var r=n.length;for(var i=0;i<n.length;i++)FJ.Loader.loadScript(e+n[i],function(){r--,r==0&&t()})})};

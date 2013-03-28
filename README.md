@@ -1,10 +1,11 @@
 Build-o-Matic
 =============
 
-Python build script for HTML 5 sites. Automates boring optimization stuff!
+Python build script for HTML 5 sites.
 
-- Compiles JS from script tags
-- Compiles LESS into CSS from link tags
+- Compiles and minifies JS from script tags
+- Generates CSS from LESS files
+- Cleans and compiles CSS 
 - Lossless image optimization of jpgs, pngs, gifs
 
 

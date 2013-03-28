@@ -4,7 +4,7 @@ import config, os, optimg, compile_js, compile_styles
 
 devHTML = open(config.root + config.index).read()
 
-#optimizes all images in the image directory
+# optimizes all images in the image directory
 optimg.run(config.root + config.images)
 devHTML = compile_js.run(devHTML)
 devHTML = compile_styles.run(devHTML)
