@@ -7,9 +7,6 @@ Python build script for HTML 5 sites.
 - Compiles LESS into CSS from link tags
 - Lossless image optimization of jpgs, pngs, gifs
 
-Note: Currently, the image optimizer will overwrite the original images. To see image compression in action, replace
-imgs/ contents with contents of unoptimized_images/
-
 
 Instructions
 =============
@@ -72,3 +69,12 @@ Alternative to ImageOptim. Added Trimage support to make image optimization cros
 - advancecomp - http://advancemame.sourceforge.net/comp-readme.html
 - pngcrush - http://pmt.sourceforge.net/pngcrush/
 - libjpeg - http://www.ijg.org/files/jpegsrc.v8c.tar.gz
+
+
+WARNINGS
+===========
+
+- Currently, the image optimizer will overwrite the original images. To see image compression in action, replace
+imgs/ contents with contents of unoptimized_images/
+
+- the tag scraper doesn't look for comments, so it will compile a script if it's between the build markers
