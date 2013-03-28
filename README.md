@@ -48,11 +48,6 @@ Instructions
 Dependencies
 =============
 
-ImageOptim: http://imageoptim.com/
------------
-Must be installed in Applications/ (else you can change where the optimg.py script looks). This will only work on mac.
-Going to try http://trimage.org/ instead
-
 LESS: http://lesscss.org/
 -----------
 npm install -g less
@@ -61,6 +56,19 @@ CleanCSS: http://davidwalsh.name/clean-css
 -----------
 npm install clean-css
 
+ImageOptim: http://imageoptim.com/
+-----------
+Must be installed in Applications/ (else you can change where the optimg.py script looks). This will only work on mac.
 
+Trimage: http://trimage.org/
+-----------
 
-
+Added Trimage support to make image optimization cross-platform, but it has an annoying number of dependencies.
+- pyqt4 - http://www.riverbankcomputing.com/software/pyqt/download
+-- qmake - sudo port install qt4-mac
+-- sip - http://www.riverbankcomputing.com/software/sip/download
+- optipng - http://optipng.sourceforge.net/
+- jpegoptim - http://www.kokkonen.net/tjko/projects.html
+- advancecomp - http://advancemame.sourceforge.net/comp-readme.html
+- pngcrush - http://pmt.sourceforge.net/pngcrush/
+- libjpeg - http://www.ijg.org/files/jpegsrc.v8c.tar.gz
