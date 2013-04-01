@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import glob, os, sys, shutil
+import glob, os, sys, shutil, time
 import config
 
 indexhtml = ""
@@ -37,7 +37,6 @@ def compile(files, output):
 
 def assemble(output, compiled):
 	print "Copying CSS to target %s" % config.css
-# 	os.system("touch " + output)
 	a = open(output, 'w+')
 	a.write("/* COMPILED CSS */\n\n")
 	for fi in compiled:
@@ -92,8 +91,9 @@ def run(html):
 	clean()
 
 # 	insert new link tags in production.html
+	timestamp = "?" + str(int(round(time.time()/1000)))
 	for file in compiled:
-		tag = "\t<link rel='text/css' href='" + file + "'/>\n"
+		tag = "\t<link rel='text/css' href='" + file + timestamp + "'/>\n"
 		indexhtml = indexhtml[:linkIndex] + tag + indexhtml[linkIndex:]
 	
 	return indexhtml

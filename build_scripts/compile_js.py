@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import glob, os, sys, shutil
+import glob, os, sys, shutil, time
 
 import config
 
@@ -21,8 +21,10 @@ def getScriptGroups():
     global indexhtml
     global newHTML
     newScripts = ""
+    timestamp = "?" + str(int(round(time.time()/1000)))
+
     for s in compiledScripts:
-        tag = "\t<script type='text/javascript' src='" + s.split(config.root)[1] + "'></script>\n"
+        tag = "\t<script type='text/javascript' src='" + s.split(config.root)[1] + timestamp + "'></script>\n"
         newScripts += tag
     # output new html with tag groups replaced by compiled scripts
     newHTML = indexhtml[:scriptIndex] + newScripts + indexhtml[scriptIndex:]
