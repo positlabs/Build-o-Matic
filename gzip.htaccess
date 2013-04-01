@@ -1,0 +1,7 @@
+# Add this to your .htaccess file to enable gzip compression. Should speed up load times by ~70%
+
+# BEGIN GZIP
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css text/json application/x-javascript application/javascript
+</ifmodule>
+# END GZIP
