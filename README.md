@@ -88,9 +88,7 @@ Alternative to ImageOptim. Added Trimage support to make image optimization cros
 WARNINGS
 ===========
 
-- Currently, the image optimizer will overwrite the original images. To see image compression in action, replace
-imgs/ contents with contents of unoptimized_images/
-
+- Currently, the image optimizer will overwrite the original images. Compression is lossless, though.
 - the tag scraper doesn't look for comments, so it will compile a commented tag if it's between the build markers
 
 
