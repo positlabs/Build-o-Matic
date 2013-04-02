@@ -11,9 +11,9 @@ Python build script for HTML 5 sites.
 
 Instructions
 =============
-0. install dependencies manually, or run install_mac.py if you're on a mac.
-1. open config.py and replace the default values with your own
-2. surround script tag groups with build tags
+0. Install dependencies manually, or run install_mac.py if you're on a mac.
+1. Open config.py and replace the default values with your own
+2. Surround script tag groups with build tags
 
 	```
 	<!-- build someFile.js -->
@@ -27,7 +27,7 @@ Instructions
 	<!-- /build -->
 	```
 
-3. same for css/less, but with a different label
+3. Same for css/less, but with a different label
 
 	```
 	<!-- styles desktop.css -->
@@ -41,10 +41,13 @@ Instructions
 	<!-- /styles -->
 	```
 
-4. on the command line, navigate to the build-o-matic.py dir, and run it
-4a. passing "deploy" as an argument will build the project, then upload the files in config.root to config.ftpRoot
+4. On the command line, navigate to the build-o-matic.py dir, and run it
 ```python
-./build-o-matic.py deploy
+python build-o-matic.py
+```
+5. Alternatively, passing "deploy" as an argument will build the project, then upload the files in config.root to config.ftpRoot
+```python
+python build-o-matic.py deploy
 ``` 
 
 Dependencies

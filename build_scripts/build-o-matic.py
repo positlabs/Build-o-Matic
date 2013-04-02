@@ -3,13 +3,12 @@
 import config, os, sys, optimg, compile_js, compile_styles, deploy
 
 if(config.input == config.output):
-    print "-"*20
+    print "-" * 20
     print "Error: config.input and config.output should have different names"
-    print "-"*20
+    print "-" * 20
     sys.exit()
     
 args = sys.argv[1:]
-
 
 devHTML = open(config.root + config.input).read()
 
@@ -27,7 +26,7 @@ def writeFile(html):
 writeFile(devHTML)
 
 if("deploy" in args):
-    print "-"*20
+    print "-" * 20
     print "deploying to " + config.ftpRoot
     deploy.upload()
     

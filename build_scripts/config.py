@@ -1,10 +1,10 @@
 # project root relative to build-o-matic.py
 root = "../test_project/"
 
-input = "index.html"
+input = "dev.html"
 
 # index with replaced tags. don't name it the same as index or it will get overwritten
-output = "production.html"
+output = "index.html"
 
 images = "imgs/"
 
