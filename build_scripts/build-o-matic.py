@@ -1,8 +1,17 @@
 #!/usr/bin/env python
 
-import config, os, optimg, compile_js, compile_styles
+import config, os, sys, optimg, compile_js, compile_styles, deploy
 
-devHTML = open(config.root + config.index).read()
+if(config.input == config.output):
+    print "-"*20
+    print "Error: config.input and config.output should have different names"
+    print "-"*20
+    sys.exit()
+    
+args = sys.argv[1:]
+
+
+devHTML = open(config.root + config.input).read()
 
 # optimizes all images in the image directory
 optimg.run(config.root + config.images)
@@ -17,4 +26,8 @@ def writeFile(html):
 
 writeFile(devHTML)
 
-
+if("deploy" in args):
+    print "-"*20
+    print "deploying to " + config.ftpRoot
+    deploy.upload()
+    

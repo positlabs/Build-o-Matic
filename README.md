@@ -42,6 +42,10 @@ Instructions
 	```
 
 4. on the command line, navigate to the build-o-matic.py dir, and run it
+4a. passing "deploy" as an argument will build the project, then upload the files in config.root to config.ftpRoot
+```python
+./build-o-matic.py deploy
+``` 
 
 Dependencies
 =============
