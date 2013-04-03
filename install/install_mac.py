@@ -19,7 +19,7 @@ def install():
     print "npm version: " + npmVersion
     
     if(npmVersion == 0):
-        # TODO - how do we know if npm is already installed?
+        # TODO - Does npm depend on nodejs?
         # install npm
         os.system("sudo curl https://npmjs.org/install.sh | sudo sh")
 

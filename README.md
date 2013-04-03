@@ -16,7 +16,7 @@ Instructions
 2. Surround script tag groups with build tags
 
 	```
-	<!-- build someFile.js -->
+	<!-- build-o-matic someFile.js -->
 	```
 
 	```
@@ -24,13 +24,13 @@ Instructions
 	```
 
 	```
-	<!-- /build -->
+	<!-- /build-o-matic -->
 	```
 
-3. Same for css/less, but with a different label
+3. Same for css/less, but with a css file name
 
 	```
-	<!-- styles desktop.css -->
+	<!-- build-o-matic desktop.css -->
 	```
 
 	```
@@ -38,7 +38,7 @@ Instructions
 	```
 
 	```
-	<!-- /styles -->
+	<!-- /build-o-matic -->
 	```
 
 4. On the command line, navigate to the build-o-matic.py dir, and run it
@@ -87,9 +87,7 @@ Alternative to ImageOptim. Added Trimage support to make image optimization cros
 
 WARNINGS
 ===========
-
 - Currently, the image optimizer will overwrite the original images. Compression is lossless, though.
-- the tag scraper doesn't look for comments, so it will compile a commented tag if it's between the build markers
 
 
 Future

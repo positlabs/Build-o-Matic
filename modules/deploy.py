@@ -5,8 +5,6 @@ from calendar import timegm
 
 from ftplib import FTP
 
-# TODO - check dates on files and compare to decide if we need to upload
-
 def upload():
     
     ftp = FTP(config.host, config.username, config.password)
