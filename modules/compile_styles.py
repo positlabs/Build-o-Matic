@@ -65,7 +65,7 @@ def getStyleGroup():
 
     start = re.search(styleRegex, indexhtml).start(0)
     end = indexhtml[start:].find('/build-o-matic') + 18
-    linkBlock = indexhtml[start:end+start]
+    linkBlock = indexhtml[start:end + start]
     linkIndex = start
     # print linkBlock
 
@@ -87,7 +87,7 @@ def getStyleGroup():
     # remove this block from indexhtml
     indexhtml = indexhtml.replace(linkBlock, "")
 
-    output = os.path.join(os.path.join(config["root"], config["css"]),  linkName)
+    output = os.path.join(os.path.join(config["root"], config["css"]), linkName)
     compileStyles(sourcePaths, output)
     return os.path.join(config["css"], linkName)
 
@@ -107,7 +107,7 @@ def run(html):
     # 	insert new link tags in production.html
     timestamp = "?" + str(int(round(time.time() / 1000)))
     for _file in compiled:
-        tag = "\t<link rel='text/css' href='" + _file +timestamp + "'/>\n"
+        tag = "\t<link rel='stylesheet' type='text/css' href='" + _file + timestamp + "'/>\n"
         indexhtml = indexhtml[:linkIndex] + tag + indexhtml[linkIndex:]
 
     return indexhtml
