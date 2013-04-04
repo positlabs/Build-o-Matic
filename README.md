@@ -41,13 +41,13 @@ Instructions
 	<!-- /build-o-matic -->
 	```
 
-4. On the command line, navigate to the build-o-matic.py dir, and run it
+4. On the command line, cd to the build-o-matic.py dir, and run it like so
 ```python
-python build-o-matic.py
+python build-o-matic.py path/to/config.json
 ```
 5. Alternatively, passing "deploy" as an argument will build the project, then upload the files in config.root to config.ftpRoot
 ```python
-python build-o-matic.py deploy
+python build-o-matic.py path/to/config.json deploy
 ``` 
 
 Dependencies

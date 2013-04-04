@@ -16,6 +16,7 @@ import compile_js
 import compile_styles
 import deploy
 import html_util
+import os
 
 def execute(configpath, doDeploy):
     json_data = open(configpath)
@@ -33,7 +34,7 @@ def execute(configpath, doDeploy):
     devHTML = open(config["root"] + config["input"]).read()
 
     # optimizes all images in the image directory
-    optimg.run(config["root"] + config["images"])
+    optimg.run(os.path.join(config["root"], config["images"]))
     devHTML = html_util.removeComments(devHTML)
     devHTML = compile_js.run(devHTML)
     devHTML = compile_styles.run(devHTML)
@@ -41,16 +42,16 @@ def execute(configpath, doDeploy):
 
 
     def writeFile(html):
-        f = open(config["root"] + config["output"], "w+")
+        f = open(os.path.join(config["root"], config["output"]), "w+")
         f.write(html)
         f.close()
-        print "\ncreated " + config["root"] + config["output"]
+        print "\ncreated ", os.path.join(config["root"], config["output"])
 
     writeFile(devHTML)
 
     if (doDeploy):
         print "-" * 20
-        print "deploying to " + config["ftpRoot"]
+        print "deploying to " + os.path.join(config["host"], config["ftpRoot"])
         deploy.upload()
 
 
