@@ -59,7 +59,11 @@ if __name__ == "__main__":
     # TODO - maybe make args more flexible. maybe use argparse
 
     args = sys.argv[1:]
-    configpath = args[0]
+    try:
+        configpath = args[0]
+    except:
+        print "\nFIRST ARGUMENT MUST BE PATH TO CONFIG.JSON!\n"
+        quit()
 
     if ("deploy" in args):
         doDeploy = True
