@@ -17,9 +17,6 @@ import compile_styles
 import deploy
 import html_util
 
-
-
-# TODO - maybe make args more flexible. maybe use argparse
 def execute(configpath, doDeploy):
     json_data = open(configpath)
 
@@ -58,6 +55,8 @@ def execute(configpath, doDeploy):
 
 
 if __name__ == "__main__":
+    # TODO - maybe make args more flexible. maybe use argparse
+
     args = sys.argv[1:]
     configpath = args[0]
 

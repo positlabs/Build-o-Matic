@@ -11,8 +11,8 @@
 
     "css": "css/",
 
-    "host": "j.toolprototype.com",
-    "username": "josh",
-    "password": "t1o2o3l4",
-    "ftpRoot": "httpdocs/build-o-matic/"
+    "host": "yoursite.com",
+    "username": "ftpUsername",
+    "password": "pASSworD!",
+    "ftpRoot": "site/root/"
 }
