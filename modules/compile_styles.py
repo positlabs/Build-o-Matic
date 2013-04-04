@@ -107,7 +107,7 @@ def run(html):
     # 	insert new link tags in production.html
     timestamp = "?" + str(int(round(time.time() / 1000)))
     for _file in compiled:
-        tag = "\t<link rel='text/css' href='" + _file + timestamp + "'/>\n"
+        tag = "\t<link rel='text/css' href='" + os.path.join(_file, timestamp) + "'/>\n"
         indexhtml = indexhtml[:linkIndex] + tag + indexhtml[linkIndex:]
 
     return indexhtml
