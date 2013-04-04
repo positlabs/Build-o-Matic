@@ -7,47 +7,63 @@
 
 """
 
+import json
+import sys
+
 sys.path.append("modules")
-import optimg, compile_js, compile_styles, deploy, html_util
-import json, sys
+import optimg
+import compile_js
+import compile_styles
+import deploy
+import html_util
+
+
 
 # TODO - maybe make args more flexible. maybe use argparse
+def execute(configpath, doDeploy):
+    json_data = open(configpath)
 
-configpath = sys.argv[1]
-json_data = open(configpath)
+    config = json.load(json_data)
+    json_data.close()
+    compile_js.config = compile_styles.config = deploy.config = config
 
-config = json.load(json_data)
-json_data.close()
-compile_js.config = compile_styles.config = deploy.config = config
+    if (config["input"] == config["output"]):
+        print "-" * 20
+        print "Error: config.input and config.output should have different names"
+        print "-" * 20
+        sys.exit()
 
-if (config["input"] == config["output"]):
-    print "-" * 20
-    print "Error: config.input and config.output should have different names"
-    print "-" * 20
-    sys.exit()
+    devHTML = open(config["root"] + config["input"]).read()
 
-args = sys.argv[1:]
-
-devHTML = open(config["root"] + config["input"]).read()
-
-# optimizes all images in the image directory
-optimg.run(config["root"] + config["images"])
-devHTML = html_util.removeComments(devHTML)
-devHTML = compile_js.run(devHTML)
-devHTML = compile_styles.run(devHTML)
-devHTML = html_util.removeWhitespace(devHTML)
+    # optimizes all images in the image directory
+    optimg.run(config["root"] + config["images"])
+    devHTML = html_util.removeComments(devHTML)
+    devHTML = compile_js.run(devHTML)
+    devHTML = compile_styles.run(devHTML)
+    devHTML = html_util.removeWhitespace(devHTML)
 
 
-def writeFile(html):
-    f = open(config["root"] + config["output"], "w+")
-    f.write(html)
-    f.close()
-    print "\ncreated " + config["root"] + config["output"]
+    def writeFile(html):
+        f = open(config["root"] + config["output"], "w+")
+        f.write(html)
+        f.close()
+        print "\ncreated " + config["root"] + config["output"]
 
-writeFile(devHTML)
+    writeFile(devHTML)
 
-if ("deploy" in args):
-    print "-" * 20
-    print "deploying to " + config["ftpRoot"]
-    deploy.upload()
-    
+    if (doDeploy):
+        print "-" * 20
+        print "deploying to " + config["ftpRoot"]
+        deploy.upload()
+
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    configpath = args[0]
+
+    if ("deploy" in args):
+        doDeploy = True
+    else:
+        doDeploy = False
+
+    execute(configpath, doDeploy)
