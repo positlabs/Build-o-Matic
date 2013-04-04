@@ -58,6 +58,7 @@ def execute(configpath, doDeploy):
 if __name__ == "__main__":
     # TODO - maybe make args more flexible. maybe use argparse
 
+    configpath = ""
     args = sys.argv[1:]
     try:
         configpath = args[0]

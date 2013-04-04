@@ -29,6 +29,7 @@ def prepare():
     os.mkdir(tmpdir)
 
 
+# https://github.com/cloudhead/less.js/wiki/Command-Line-Usage
 def compileStyles(files, output):
     compiled = []
 
@@ -36,15 +37,22 @@ def compileStyles(files, output):
         filename = _file.split("/")[-1]
         print filename
         if (filename.find('.less') != -1):
-            os.system("lessc %s %s -x" % (_file, os.path.join(tmpdir, "clean_" + filename)))
+            os.system("lessc %s %s -x -ru" % (_file, os.path.join(tmpdir, "clean_" + filename)))
         else:
             os.system("cleancss -o %s %s" % (os.path.join(tmpdir, "clean_" + filename), _file))
 
         compiled.append(os.path.join(tmpdir, "clean_" + filename))
     assemble(output, compiled)
 
-
 def assemble(output, compiled):
+    subdirs = output.split("/")[:-1]
+
+    if len(subdirs) > 0:
+        try:
+            os.makedirs("/".join(subdirs))
+        except:
+            pass
+
     a = open(output, 'w+')
     a.write("/* COMPILED CSS */\n\n")
     for fi in compiled:

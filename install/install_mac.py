@@ -5,8 +5,7 @@
 import os, shutil, subprocess
 
 def install():
-    # packages = ["less", "clean-css", "uglify-js"]
-    packages = ["less", "uglify-js"]
+    packages = ["less", "clean-css", "uglify-js"]
 
     print "=================="
     print "installing npm, less, clean-css, and ugligy-js, ImageOptim"
@@ -26,7 +25,7 @@ def install():
 
     # install libs available through npm
     for p in packages:
-        os.system("sudo npm install %s" % p)
+        os.system("sudo npm install -g %s" % p)
         
     if(os.path.exists("/Applications/ImageOptim.app") == False):
         # download ImageOptim, extract, and install

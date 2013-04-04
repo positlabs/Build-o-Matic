@@ -59,6 +59,10 @@ LESS: http://lesscss.org/
 -----------
 npm install -g less
 
+CleanCSS: http://davidwalsh.name/clean-css
+-----------
+npm install clean-css
+
 Uglify-js: https://github.com/mishoo/UglifyJS
 -----------
 npm install uglify-js
