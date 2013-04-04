@@ -12,7 +12,7 @@ Python build script for HTML 5 sites.
 Instructions
 =============
 0. Install dependencies manually, or run install_mac.py if you're on a mac.
-1. Open config.py and replace the default values with your own
+1. Open config-example.json and replace the default values with your own
 2. Surround script tag groups with build tags
 
 	```

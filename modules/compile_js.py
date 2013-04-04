@@ -2,13 +2,12 @@
 
 import glob, os, shutil, time, re
 
-import config
-
 #TODO - get rid of globals - use returns instead
 #TODO - minify inline script
 
 global indexhtml
 
+config = {}
 indexhtml = ""
 newHTML = ""
 compiledScripts = []
@@ -30,7 +29,7 @@ def getScriptGroups():
         getScriptGroup()
 
     for s in compiledScripts:
-        tag = "\t<script type='text/javascript' src='" + s.split(config.root)[1] + timestamp + "'></script>\n"
+        tag = "\t<script type='text/javascript' src='" + s.split(config["root"])[1] + timestamp + "'></script>\n"
         newScripts += tag
         # output new html with tag groups replaced by compiled scripts
     newHTML = indexhtml[:scriptIndex] + newScripts + indexhtml[scriptIndex:]
@@ -60,13 +59,13 @@ def getScriptGroup():
     for item in scriptBlock.split("<script")[1:]:
         # get src attributes
         src = item.split("src=")[1][1:].split(".js")[0]
-        sourcePaths.append(config.root + src + ".js")
+        sourcePaths.append(config["root"] + src + ".js")
         # print "src",src
 
     # remove this block from indexhtml
     indexhtml = indexhtml.replace(scriptBlock, "")
 
-    output = config.root + config.js + scriptName
+    output = config["root"] + config["js"] + scriptName
     compiledScripts.append(output)
     buildFiles(sourcePaths, output)
 

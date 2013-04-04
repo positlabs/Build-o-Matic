@@ -5,16 +5,16 @@ import shutil
 import time
 import re
 
-import config
-
 #TODO - get rid of globals, use returns
-
+config = {}
 indexhtml = ""
 tmpdir = "temp_css"
 linkIndex = 0
 styleRegex = r'<!--.*build-o-matic .*(?=\.css)'
 
 # compiled = "%s/*.css" % tmpdir
+
+
 
 def clean():
     try:
@@ -81,15 +81,15 @@ def getStyleGroup():
     for item in linkBlock.split("<link")[1:]:
         # get href attributes
         href = re.search(r'.*\.less|.*\.css', item.split("href=")[1][1:]).group(0)
-        sourcePaths.append(config.root + href)
+        sourcePaths.append(config["root"] + href)
         # print 'href', href
 
     # remove this block from indexhtml
     indexhtml = indexhtml.replace(linkBlock, "")
 
-    output = config.root + config.css + linkName
+    output = config["root"] + config["css"] + linkName
     compileStyles(sourcePaths, output)
-    return config.css + linkName
+    return config["css"] + linkName
 
 
 def run(html):

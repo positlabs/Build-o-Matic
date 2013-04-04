@@ -1,29 +1,31 @@
 #!/usr/bin/env python
 
-import config, os, datetime
+import os, datetime
 from calendar import timegm
 
 from ftplib import FTP
 
+config = {}
+
 def upload():
     
-    ftp = FTP(config.host, config.username, config.password)
+    ftp = FTP(config["host"], config["username"], config["password"])
     
     try:
-        ftp.mkd(config.ftpRoot[:-1])
+        ftp.mkd(config["ftpRoot"][:-1])
     except:
         pass
     
     # change working dir on ftp to project root    
-    ftp.cwd(config.ftpRoot)
+    ftp.cwd(config["ftpRoot"])
     
-    for root, dirs, files in os.walk(config.root):
+    for root, dirs, files in os.walk(config["root"]):
         
         # make directory structure
         for dir in dirs: 
             try:
                 dirPath = os.path.join(root, dir)
-                dirPath = dirPath.split(config.root)[1]
+                dirPath = dirPath.split(config["root"])[1]
                 ftp.mkd(dirPath)
             except:
                 pass
@@ -37,7 +39,7 @@ def upload():
                 localMTime = int(os.stat(os.path.join(root, file)).st_mtime)
 
                 try:
-                    remoteFile = os.path.join(root.split(config.root)[1], file)
+                    remoteFile = os.path.join(root.split(config["root"])[1], file)
                     remoteMTime = str(ftp.sendcmd("MDTM %s" % remoteFile)[3:].strip())
                     remoteMTime = mdtmToDate(remoteMTime)
 #                    print "local:\t", localMTime
@@ -49,8 +51,8 @@ def upload():
                 
                 if(td > 0):
                     localFile = os.path.join(root, file)
-                    remoteFile = os.path.join(root.split(config.root)[1], file)
-                    print localFile, "\t-->\t", config.ftpRoot + remoteFile
+                    remoteFile = os.path.join(root.split(config["root"])[1], file)
+                    print localFile, "\t-->\t", config["ftpRoot"] + remoteFile
                     ftp.storbinary("STOR " + remoteFile, open(localFile))
     
     ftp.quit()
