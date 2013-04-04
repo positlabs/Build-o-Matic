@@ -89,7 +89,7 @@ def getStyleGroup():
 
     output = os.path.join(os.path.join(config["root"], config["css"]),  linkName)
     compileStyles(sourcePaths, output)
-    return config["css"] + linkName
+    return os.path.join(config["css"], linkName)
 
 
 def run(html):
@@ -107,7 +107,7 @@ def run(html):
     # 	insert new link tags in production.html
     timestamp = "?" + str(int(round(time.time() / 1000)))
     for _file in compiled:
-        tag = "\t<link rel='text/css' href='" + os.path.join(_file, timestamp) + "'/>\n"
+        tag = "\t<link rel='text/css' href='" + _file +timestamp + "'/>\n"
         indexhtml = indexhtml[:linkIndex] + tag + indexhtml[linkIndex:]
 
     return indexhtml
