@@ -2,7 +2,7 @@
 
 """
 
-    usage: ./build-o-matic.py path/to/config.json deploy
+    usage: ./buildOmatic.py path/to/config.json deploy
     deploy argument is optional - it uploads the site to an ftp
 
 """
