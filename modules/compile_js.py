@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
-import glob, os, shutil, time, re
+import os
+import shutil
+import time
+import re
 
 #TODO - get rid of globals - use returns instead
 #TODO - minify inline script
@@ -11,6 +14,7 @@ config = {}
 indexhtml = ""
 newHTML = ""
 compiledScripts = []
+sourcePaths = []
 scriptIndex = 0  # keep track of where we pulled the scripts from
 scriptRegex = r'<!--.*build-o-matic .*(?=\.js)'
 
@@ -49,13 +53,11 @@ def getScriptGroup():
     # get the name of the script group
     scriptName = indexhtml[start:].split("build-o-matic ")[1].split(".js")[0] + ".js"
 
-
     print "-------------------"
     print "compiling block: " + scriptName
     print "-------------------"
 
     # print scriptBlock.split("<script")
-    sourcePaths = []
     for item in scriptBlock.split("<script")[1:]:
         # get src attributes
         src = item.split("src=")[1][1:].split(".js")[0]
@@ -96,8 +98,12 @@ def compileFiles(files):
 def assemble(output):
     a = open(output, 'w')
     a.write("// COMPILED SCRIPTS\n\n")
-    for fi in glob.glob(compiled):
-        f = open(fi, 'r')
+    # for fi in glob.glob(compiled):
+    print sourcePaths
+    for fi in sourcePaths:
+        filepath = os.path.join(tmpdir, fi.split("/")[-1])
+        print filepath
+        f = open(filepath, 'r')
         a.write("// Original file: %s\n" % os.path.split(fi)[1])
         a.write(f.read())
         a.write("\n")

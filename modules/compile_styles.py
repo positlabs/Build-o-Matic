@@ -37,7 +37,8 @@ def compileStyles(files, output):
         filename = _file.split("/")[-1]
         print filename
         if (filename.find('.less') != -1):
-            os.system("lessc %s %s -x -ru" % (_file, os.path.join(tmpdir, "clean_" + filename)))
+            #todo - get root path arg to work maybe -rp=asdfsdf/asdf
+            os.system("lessc %s %s -x" % (_file, os.path.join(tmpdir, "clean_" + filename)))
         else:
             os.system("cleancss -o %s %s" % (os.path.join(tmpdir, "clean_" + filename), _file))
 

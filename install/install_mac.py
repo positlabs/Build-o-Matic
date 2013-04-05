@@ -5,7 +5,7 @@
 import os, shutil, subprocess
 
 def install():
-    packages = ["less", "clean-css", "uglify-js"]
+    packages = ["less", "clean-css", "uglify-js@1"]
 
     print "=================="
     print "installing npm, less, clean-css, and ugligy-js, ImageOptim"
