@@ -36,10 +36,15 @@ def compileStyles(files, output):
     for _file in files:
         filename = _file.split("/")[-1]
         print filename
+
         if (filename.find('.less') != -1):
-            #todo - get root path arg to work maybe -rp=asdfsdf/asdf
-            os.system("lessc %s %s -x" % (_file, os.path.join(tmpdir, "clean_" + filename)))
+            # replaces project root + compiled css path, splits off filename. result is rootpath for final output css
+            rootpath = "/".join(_file.replace(os.path.join(config["root"], config["css"]), "").split("/")[:-1])
+            # print "lessc -x -rp=%s -ru %s %s" % (rootpath, _file, os.path.join(tmpdir, "clean_" + filename))
+            os.system("lessc -x -rp=%s -ru %s %s" % (rootpath, _file, os.path.join(tmpdir, "clean_" + filename)))
+            # os.system("lessc %s %s -x" % (_file, os.path.join(tmpdir, "clean_" + filename)))
         else:
+            #TODO - just use less compiler so we can trash the cleancss dependency
             os.system("cleancss -o %s %s" % (os.path.join(tmpdir, "clean_" + filename), _file))
 
         compiled.append(os.path.join(tmpdir, "clean_" + filename))

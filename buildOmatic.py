@@ -34,11 +34,11 @@ def execute(configpath, doDeploy):
     devHTML = open(config["root"] + config["input"]).read()
 
     # optimizes all images in the image directory
-    optimg.run(os.path.join(config["root"], config["images"]))
-    devHTML = html_util.removeComments(devHTML)
-    devHTML = compile_js.run(devHTML)
+    # optimg.run(os.path.join(config["root"], config["images"]))
+    # devHTML = html_util.removeComments(devHTML)
+    # devHTML = compile_js.run(devHTML)
     devHTML = compile_styles.run(devHTML)
-    devHTML = html_util.removeWhitespace(devHTML)
+    # devHTML = html_util.removeWhitespace(devHTML)
 
 
     def writeFile(html):
