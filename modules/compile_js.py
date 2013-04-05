@@ -98,8 +98,6 @@ def compileFiles(files):
 def assemble(output):
     a = open(output, 'w')
     a.write("// COMPILED SCRIPTS\n\n")
-    # for fi in glob.glob(compiled):
-    print sourcePaths
     for fi in sourcePaths:
         filepath = os.path.join(tmpdir, fi.split("/")[-1])
         print filepath

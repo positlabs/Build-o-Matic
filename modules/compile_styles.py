@@ -35,14 +35,32 @@ def compileStyles(files, output):
 
     for _file in files:
         filename = _file.split("/")[-1]
-        print filename
+        print _file
 
         if (filename.find('.less') != -1):
-            # replaces project root + compiled css path, splits off filename. result is rootpath for final output css
-            rootpath = "/".join(_file.replace(os.path.join(config["root"], config["css"]), "").split("/")[:-1])
+
+            originalDirs = _file.split("/")[:-1]
+            outputDirs = output.split("/")[:-1]
+
+            # need to compare depth of output with depth of input
+            # if they are the same, pass nothing as rootpath
+            if len(originalDirs) == len(outputDirs):
+                prependPath = ""
+            elif len(originalDirs) > len(outputDirs):
+                # prepend path needs to point to original dir from output dir
+                # original deeper, add path to original
+                sliceFrom = len(originalDirs) - len(outputDirs)
+                prependPath = "/".join(originalDirs[-sliceFrom:])
+            else:
+                # original shallower, add ../ for each level
+                prependPath = "../" * (len(outputDirs) - len(originalDirs))
+                pass
+
             # print "lessc -x -rp=%s -ru %s %s" % (rootpath, _file, os.path.join(tmpdir, "clean_" + filename))
-            os.system("lessc -x -rp=%s -ru %s %s" % (rootpath, _file, os.path.join(tmpdir, "clean_" + filename)))
-            # os.system("lessc %s %s -x" % (_file, os.path.join(tmpdir, "clean_" + filename)))
+            if(len(prependPath) > 0):
+                os.system("lessc -x -rp=%s %s %s" % (prependPath, _file, os.path.join(tmpdir, "clean_" + filename)))
+            else:
+                os.system("lessc %s %s -x" % (_file, os.path.join(tmpdir, "clean_" + filename)))
         else:
             #TODO - just use less compiler so we can trash the cleancss dependency
             os.system("cleancss -o %s %s" % (os.path.join(tmpdir, "clean_" + filename), _file))
