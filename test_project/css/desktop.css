@@ -1,0 +1,47 @@
+/* COMPILED CSS */
+
+/* Original file: nesty.less */
+.desktop{text-align:center;height:100%;}.loading .desktop{opacity:0;}
+.m_menu .desktop{opacity:1;-webkit-transition:opacity 1s;-moz-transition:opacity 1s;-o-transition:opacity 1s;transition:opacity 1s;}
+.desktop #menu-btns{position:absolute;width:100%;bottom:3.6em;}.desktop #menu-btns .nav-bar{position:relative;text-align:left;height:33%;min-height:6em;}.desktop #menu-btns .nav-bar .nav-btn{width:4em;}.desktop #menu-btns .nav-bar .nav-btn img{top:3em;height:2em;position:relative;}
+.desktop #menu-btns h2,.desktop #menu-btns h3{margin:0;margin-left:12px;}
+.desktop #menu-btns h2{line-height:100%;padding-top:0.2em;font-size:3.2em;}
+.desktop #menu-btns h3{line-height:1em;color:#40d312;}.day .desktop #menu-btns h3{color:#ff0319;}
+.desktop #menu-btns #to-policy a{background-position:top;}
+.desktop #menu-btns #to-player a{background-position:center;}
+.desktop #menu-btns #to-gallery a{background-position:bottom;}
+.desktop #menu-circle{height:80%;opacity:.25;position:absolute;z-index:0;top:10%;left:0;}
+.desktop .menu-btn{height:100%;width:100%;position:relative;}.desktop .menu-btn span{display:block;}
+.desktop #header{position:absolute;z-index:1;width:100%;margin:10% 0;text-align:center;font-size:.54em;}.desktop #header div{margin:0 auto;display:block;}
+.desktop #logo{padding-top:5%;margin:0 auto;}
+.desktop #exclusive{color:#40d312;line-height:1em;letter-spacing:.04em;font-size:8.3em;}.day .desktop #exclusive{color:#ff0319;}
+.desktop #track{color:white;line-height:.7em;letter-spacing:.04em;font-size:7em;}
+.desktop #be-part{letter-spacing:0.11em;font-family:'Oswald',sans-serif;margin-top:.1em;font-size:1.8em;}
+.desktop #footer{bottom:0;position:absolute;height:3.6em;width:100%;}.desktop #footer a{font-size:1em;float:left;margin:1em 0 0 1em;color:#4d4d4d;}
+.desktop #footer img{position:relative;height:1.6em;float:right;padding:1em;}
+.desktop #bottom-block{position:absolute;bottom:0;min-height:40%;}
+
+/* Original file: common.less */
+.common div{display:none;}
+
+/* Original file: desktop.less */
+.desktop{text-align:center;height:100%;}.loading .desktop{opacity:0;}
+.m_menu .desktop{opacity:1;-webkit-transition:opacity 1s;-moz-transition:opacity 1s;-o-transition:opacity 1s;transition:opacity 1s;}
+.desktop #menu-btns{position:absolute;width:100%;bottom:3.6em;}.desktop #menu-btns .nav-bar{position:relative;text-align:left;height:33%;min-height:6em;}.desktop #menu-btns .nav-bar .nav-btn{width:4em;}.desktop #menu-btns .nav-bar .nav-btn img{top:3em;height:2em;position:relative;}
+.desktop #menu-btns h2,.desktop #menu-btns h3{margin:0;margin-left:12px;}
+.desktop #menu-btns h2{line-height:100%;padding-top:0.2em;font-size:3.2em;}
+.desktop #menu-btns h3{line-height:1em;color:#40d312;}.day .desktop #menu-btns h3{color:#ff0319;}
+.desktop #menu-btns #to-policy a{background-position:top;}
+.desktop #menu-btns #to-player a{background-position:center;}
+.desktop #menu-btns #to-gallery a{background-position:bottom;}
+.desktop #menu-circle{height:80%;opacity:.25;position:absolute;z-index:0;top:10%;left:0;}
+.desktop .menu-btn{height:100%;width:100%;position:relative;}.desktop .menu-btn span{display:block;}
+.desktop #header{position:absolute;z-index:1;width:100%;margin:10% 0;text-align:center;font-size:.54em;}.desktop #header div{margin:0 auto;display:block;}
+.desktop #logo{padding-top:5%;margin:0 auto;}
+.desktop #exclusive{color:#40d312;line-height:1em;letter-spacing:.04em;font-size:8.3em;}.day .desktop #exclusive{color:#ff0319;}
+.desktop #track{color:white;line-height:.7em;letter-spacing:.04em;font-size:7em;}
+.desktop #be-part{letter-spacing:0.11em;font-family:'Oswald',sans-serif;margin-top:.1em;font-size:1.8em;}
+.desktop #footer{bottom:0;position:absolute;height:3.6em;width:100%;}.desktop #footer a{font-size:1em;float:left;margin:1em 0 0 1em;color:#4d4d4d;}
+.desktop #footer img{position:relative;height:1.6em;float:right;padding:1em;}
+.desktop #bottom-block{position:absolute;bottom:0;min-height:40%;}
+
