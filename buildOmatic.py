@@ -66,12 +66,12 @@ if __name__ == "__main__":
         print "\nFIRST ARGUMENT MUST BE PATH TO CONFIG.JSON!\n"
         quit()
 
-    if ("-deploy" in args):
+    if "--deploy" in args or "-d" in args:
         doDeploy = True
     else:
         doDeploy = False
 
-    if "-optimg" in args:
+    if "--optimg" in args or "-o" in args:
         doOpt = True
     else:
         doOpt = False
