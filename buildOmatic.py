@@ -18,7 +18,7 @@ import deploy
 import html_util
 import os
 
-def execute(configpath, doDeploy):
+def execute(configpath, doDeploy, doOptimg):
     json_data = open(configpath)
 
     config = json.load(json_data)
@@ -33,12 +33,12 @@ def execute(configpath, doDeploy):
 
     devHTML = open(config["root"] + config["input"]).read()
 
-    # optimizes all images in the image directory
-    # optimg.run(os.path.join(config["root"], config["images"]))
-    # devHTML = html_util.removeComments(devHTML)
-    # devHTML = compile_js.run(devHTML)
+    if(doOptimg == True):
+        optimg.run(os.path.join(config["root"], config["images"]))
+    devHTML = html_util.removeComments(devHTML)
+    devHTML = compile_js.run(devHTML)
     devHTML = compile_styles.run(devHTML)
-    # devHTML = html_util.removeWhitespace(devHTML)
+    devHTML = html_util.removeWhitespace(devHTML)
 
 
     def writeFile(html):
@@ -66,9 +66,15 @@ if __name__ == "__main__":
         print "\nFIRST ARGUMENT MUST BE PATH TO CONFIG.JSON!\n"
         quit()
 
-    if ("deploy" in args):
+    if ("-deploy" in args):
         doDeploy = True
     else:
         doDeploy = False
 
-    execute(configpath, doDeploy)
+    if "-optimg" in args:
+        doOpt = True
+    else:
+        doOpt = False
+
+
+    execute(configpath, doDeploy, doOpt)
