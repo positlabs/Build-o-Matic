@@ -48,8 +48,10 @@ python build-o-matic.py <path/to/config.json>
 
 Arguments
 -----------
-- `-d` `--deploy`: uploads contents of config.root to config.ftpRoot
-- `-o` `--optimg`: runs image optimizer on all images in config.images
+- `-d` `--deploy`: builds, then uploads contents of config.root to config.ftpRoot
+- `-D`: just uploads files
+- `-o` `--optimg`: builds, then runs image optimizer on all images in config.images
+- `-O`: just runs image processor
 
 Dependencies
 =============

@@ -18,12 +18,7 @@ import deploy
 import html_util
 import os
 
-def execute(configpath, doDeploy, doOptimg):
-    json_data = open(configpath)
-
-    config = json.load(json_data)
-    json_data.close()
-    compile_js.config = compile_styles.config = deploy.config = config
+def execute(config, doDeploy, doOptimg):
 
     if (config["input"] == config["output"]):
         print "-" * 20
@@ -50,10 +45,13 @@ def execute(configpath, doDeploy, doOptimg):
     writeFile(devHTML)
 
     if (doDeploy):
-        print "-" * 20
-        print "deploying to " + os.path.join(config["host"], config["ftpRoot"])
-        deploy.upload()
+        upload(config)
 
+def upload(config):
+    deploy.config = config
+    print "-" * 20
+    print "deploying to " + os.path.join(config["host"], config["ftpRoot"])
+    deploy.upload()
 
 if __name__ == "__main__":
     # TODO - maybe make args more flexible. maybe use argparse
@@ -66,15 +64,29 @@ if __name__ == "__main__":
         print "\nFIRST ARGUMENT MUST BE PATH TO CONFIG.JSON!\n"
         quit()
 
-    if "--deploy" in args or "-d" in args:
-        doDeploy = True
+    json_data = open(configpath)
+    config = json.load(json_data)
+    json_data.close()
+    compile_js.config = compile_styles.config = deploy.config = config
+
+    if '-D' in args:
+        #hard deploy, don't build project
+        upload(config)
+
+    elif '-O' in args:
+        #hard img optim, don't build project
+        optimg.run(os.path.join(config["root"], config["images"]))
+
     else:
-        doDeploy = False
+        if "--deploy" in args or "-d" in args:
+            doDeploy = True
+        else:
+            doDeploy = False
 
-    if "--optimg" in args or "-o" in args:
-        doOpt = True
-    else:
-        doOpt = False
+        if "--optimg" in args or "-o" in args:
+            doOpt = True
+        else:
+            doOpt = False
 
 
-    execute(configpath, doDeploy, doOpt)
+        execute(config, doDeploy, doOpt)
