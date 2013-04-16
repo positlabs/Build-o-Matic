@@ -45,10 +45,9 @@ def execute(config, doDeploy, doOptimg):
     writeFile(devHTML)
 
     if (doDeploy):
-        upload(config)
+        upload()
 
-def upload(config):
-    deploy.config = config
+def upload():
     print "-" * 20
     print "deploying to " + os.path.join(config["host"], config["ftpRoot"])
     deploy.upload()
@@ -71,7 +70,7 @@ if __name__ == "__main__":
 
     if '-D' in args:
         #hard deploy, don't build project
-        upload(config)
+        upload()
 
     elif '-O' in args:
         #hard img optim, don't build project

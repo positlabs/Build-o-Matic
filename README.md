@@ -90,7 +90,7 @@ Alternative to ImageOptim. Added Trimage support to make image optimization cros
 
 WARNINGS
 ===========
-- Currently, the image optimizer will overwrite the original images. Compression is lossless, though.
+- Currently, the image optimizer will overwrite the original images. Compression is lossless, but it can cause merge conflicts in git.
 
 
 Future
