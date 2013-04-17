@@ -49,7 +49,7 @@ def execute(config, doDeploy, doOptimg):
 
 def upload():
     print "-" * 20
-    print "deploying to " + os.path.join(config["host"], config["ftpRoot"])
+    print "deploying to " + os.path.join(deploy.config["host"], deploy.config["ftpRoot"])
     deploy.upload()
 
 if __name__ == "__main__":
