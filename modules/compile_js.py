@@ -102,7 +102,6 @@ def assemble(output):
     a.write("// COMPILED SCRIPTS\n\n")
     for fi in sourcePaths:
         filepath = os.path.join(tmpdir, fi.split("/")[-1])
-        print filepath
         f = open(filepath, 'r')
         a.write("// Original file: %s\n" % os.path.split(fi)[1])
         a.write(f.read())
