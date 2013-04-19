@@ -8,6 +8,7 @@ from ftplib import FTP
 config = {}
 
 def upload():
+    print "uploading to " + config["host"];
     
     ftp = FTP(config["host"], config["username"], config["password"])
     

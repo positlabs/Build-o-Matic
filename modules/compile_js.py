@@ -42,6 +42,7 @@ def getScriptGroups():
 def getScriptGroup():
     global indexhtml
     global scriptIndex
+    global sourcePaths
 
     start = re.search(scriptRegex, indexhtml).start(0)
     end = indexhtml[start:].find('/build-o-matic') + 18
@@ -70,6 +71,7 @@ def getScriptGroup():
     output = config["root"] + config["js"] + scriptName
     compiledScripts.append(output)
     buildFiles(sourcePaths, output)
+    sourcePaths = []
 
 
 def clean():
