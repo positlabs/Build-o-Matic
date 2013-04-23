@@ -80,6 +80,7 @@ def assemble(output, compiled):
     a = open(output, 'w+')
     a.write("/* COMPILED CSS */\n\n")
     for fi in compiled:
+    	print fi
         f = open(fi, 'r')
         a.write("/* Original file: %s */\n" % os.path.split(fi)[1].split("clean_")[1])
         a.write(f.read())
@@ -127,6 +128,8 @@ def run(html):
     indexhtml = html
 
     compiled = []
+
+    prepare()
 
     # 	get link tag groups
     while re.search(styleRegex, indexhtml):
