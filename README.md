@@ -40,8 +40,20 @@ Instructions
 	```
 	<!-- /build-o-matic -->
 	```
+4.
 
-4. On the command line, cd to the build-o-matic.py dir, and run it like so
+	```
+	<!-- dev -->
+	```
+
+	```
+	[anything you don't want to show up in the production html]
+	```
+
+	```
+	<!-- /dev -->
+	```
+5. On the command line, cd to the build-o-matic.py dir, and run it like so
 ```python
 python build-o-matic.py <path/to/config.json>
 ```
