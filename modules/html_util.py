@@ -10,14 +10,11 @@ devRegexClose = r'<!--\s?\/dev\s?-->'
 def removeComments(html):
 
     modHtml = html
-    print html
 
     while re.search(devRegex, modHtml):
         start = re.search(devRegex, modHtml).start()
         end = re.search(devRegexClose, modHtml).end()
         modHtml = modHtml.replace(modHtml[start:end], "")
-
-    print modHtml
 
     while re.search(commentRegex, modHtml):
         start = re.search(commentRegex, modHtml).start()

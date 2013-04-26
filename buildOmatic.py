@@ -30,9 +30,9 @@ def execute(config, doDeploy, doOptimg):
 
     if(doOptimg == True):
         optimg.run(os.path.join(config["root"], config["images"]))
-    devHTML = html_util.removeComments(devHTML)
     devHTML = compile_js.run(devHTML)
     devHTML = compile_styles.run(devHTML)
+    devHTML = html_util.removeComments(devHTML)
     devHTML = html_util.removeWhitespace(devHTML)
 
 

@@ -15,7 +15,7 @@ indexhtml = ""
 newHTML = ""
 compiledScripts = []
 sourcePaths = []
-scriptIndex = 0  # keep track of where we pulled the scripts from
+scriptIndexes = []  # keep track of where we pulled the scripts from
 scriptRegex = r'<!--.*build-o-matic .*(?=\.js)'
 
 tmpdir = "temp_js"
@@ -24,32 +24,39 @@ compiled = "%s/*.js" % tmpdir
 
 # scrape script tag groups for file names and compile them
 def getScriptGroups():
+    global scriptIndexes
     global indexhtml
     global newHTML
-    newScripts = ""
     timestamp = "?" + str(int(round(time.time() / 1000)))
 
     while re.search(scriptRegex, indexhtml):
         getScriptGroup()
 
+    newHTML = indexhtml
+    offset = 0
     for s in compiledScripts:
         tag = "\t<script type='text/javascript' src='" + s.split(config["root"])[1] + timestamp + "'></script>\n"
-        newScripts += tag
+        newHTML = newHTML[:scriptIndexes[0]+offset] + tag + newHTML[scriptIndexes[0]+offset:]
+        print newHTML
+        scriptIndexes = scriptIndexes[1:]
+        offset += len(tag)
         # output new html with tag groups replaced by compiled scripts
-    newHTML = indexhtml[:scriptIndex] + newScripts + indexhtml[scriptIndex:]
+
+    # newHTML = indexhtml[:scriptIndex] + newScripts + indexhtml[scriptIndex:]
+
+
+    # newHTML = indexhtml[:scriptIndex] + newScripts + indexhtml[scriptIndex:]
 
 
 def getScriptGroup():
     global indexhtml
-    global scriptIndex
+    global scriptIndexes
     global sourcePaths
 
     start = re.search(scriptRegex, indexhtml).start(0)
     end = indexhtml[start:].find('/build-o-matic') + 18
     scriptBlock = indexhtml[start:end + start]
-    scriptIndex = start
-    # print "range", start, end
-    # print scriptBlock
+    scriptIndexes.append(start)
 
     # get the name of the script group
     scriptName = indexhtml[start:].split("build-o-matic ")[1].split(".js")[0] + ".js"
