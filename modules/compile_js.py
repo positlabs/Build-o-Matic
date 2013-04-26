@@ -37,7 +37,6 @@ def getScriptGroups():
     for s in compiledScripts:
         tag = "\t<script type='text/javascript' src='" + s.split(config["root"])[1] + timestamp + "'></script>\n"
         newHTML = newHTML[:scriptIndexes[0]+offset] + tag + newHTML[scriptIndexes[0]+offset:]
-        print newHTML
         scriptIndexes = scriptIndexes[1:]
         offset += len(tag)
         # output new html with tag groups replaced by compiled scripts
