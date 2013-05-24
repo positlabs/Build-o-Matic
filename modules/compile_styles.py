@@ -116,11 +116,14 @@ def getStyleGroup():
         # print 'href', href
 
     # remove this block from indexhtml
-    indexhtml = indexhtml.replace(linkBlock, "")
+    url = os.path.join(config["css"], linkName)
+    timestamp = "?" + str(int(round(time.time() / 1000)))
+    tag = "<link rel='stylesheet' type='text/css' href='" + url + timestamp + "'/>\n"
+    indexhtml = indexhtml.replace(linkBlock, tag)
 
     output = os.path.join(os.path.join(config["root"], config["css"]), linkName)
     compileStyles(sourcePaths, output)
-    return os.path.join(config["css"], linkName)
+    return url
 
 
 def run(html):
@@ -138,10 +141,10 @@ def run(html):
     clean()
 
     # 	insert new link tags in production.html
-    timestamp = "?" + str(int(round(time.time() / 1000)))
-    for _file in compiled:
-        tag = "\t<link rel='stylesheet' type='text/css' href='" + _file + timestamp + "'/>\n"
-        indexhtml = indexhtml[:linkIndex] + tag + indexhtml[linkIndex:]
+    # timestamp = "?" + str(int(round(time.time() / 1000)))
+    # for _file in compiled:
+        # tag = "\t<link rel='stylesheet' type='text/css' href='" + _file + timestamp + "'/>\n"
+        # indexhtml = indexhtml[:linkIndex] + tag + indexhtml[linkIndex:]
 
     return indexhtml
 	

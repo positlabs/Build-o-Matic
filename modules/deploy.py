@@ -52,7 +52,7 @@ def upload():
                 if(td > 0):
                     localFile = os.path.join(root, _file)
                     remoteFile = os.path.join(root.split(config["root"])[1], _file)
-                    print localFile, "\t-->\t", config["ftpRoot"] + remoteFile
+                    print localFile, "\t-->\t", os.path.join(config["ftpRoot"], remoteFile)
                     ftp.storbinary("STOR " + remoteFile, open(localFile))
     
     ftp.quit()
