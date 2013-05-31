@@ -108,6 +108,7 @@ WARNINGS
 Future
 ===========
 - Cross-platform compatibility
+- automatic image resizer generator thing
 
 
 License

@@ -26,7 +26,10 @@ def clean():
 
 def prepare():
     print "Creating the temp directory"
-    os.mkdir(tmpdir)
+    try:
+        os.mkdir(tmpdir)
+    except Exception:
+        pass
 
 
 # https://github.com/cloudhead/less.js/wiki/Command-Line-Usage
