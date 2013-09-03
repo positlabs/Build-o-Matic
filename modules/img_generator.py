@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
-import Wand
+# http://docs.wand-py.org/en/0.2-maintenance/index.html
+import wand
 import os
-
-
 
 
 def run(projectPath):
@@ -13,15 +12,19 @@ def run(projectPath):
 		urls = []
 		for root, dirs, files in os.walk(projectPath):
 			for f in files:
-				# TODO  -check if it's an image. if it is, don't push it
+				# check if it's an image. if it is, don't push it
 				ext = os.path.splitext(f)[1];
-				print ext
 				if not ext in ['.jpg', ".jpeg", ".gif", ".png"]:
-					arr.push(os.path.join(root, f))
+					path = os.path.join(root, f)
+					print path
+					filesToScrape.append(path)
 
-		#read in the files, search for instances of image urls
+
+		imgRegex = "('|\")(.*)(\.png|\.jpg|\.jpeg|\.gif|\.bmp)"
+				#read in the files, search for instances of image urls
 		for f in filesToScrape:
-			text = open(f)
+			text = open(f, "r").read()
+			print "\nreading... ", f
 
 		return urls
 
@@ -29,4 +32,4 @@ def run(projectPath):
 
 
 
-run("test_project")
+run("../test_project")

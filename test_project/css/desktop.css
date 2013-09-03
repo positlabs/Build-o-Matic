@@ -20,7 +20,7 @@
 .desktop #footer{bottom:0;position:absolute;height:3.6em;width:100%;}.desktop #footer a{font-size:1em;float:left;margin:1em 0 0 1em;color:#4d4d4d;}
 .desktop #footer img{position:relative;height:1.6em;float:right;padding:1em;}
 .desktop #bottom-block{position:absolute;bottom:0;min-height:40%;}
-#werwerf{background-image:url('src/nest/../../../imgs/contentBG.png');}
+#werwerf{background-image:url('src/nest/../../../imgs/contentBG-200.png');}
 
 /* Original file: common.less */
 .common div{display:none;}
